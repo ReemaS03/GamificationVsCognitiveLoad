@@ -1,6 +1,6 @@
 let pages = [
-    { url: '/GamificationVsCognitiveLoad/index.html', title: 'Home' },
-    { url: '/GamificationVsCognitiveLoad/writeup.html', title: 'Writeup' }
+    { url: './index.html', title: 'Home' },
+    { url: './writeup.html', title: 'Writeup' }
 ];
 
 let nav = document.createElement('nav');
