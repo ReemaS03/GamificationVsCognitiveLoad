@@ -1,3 +1,15 @@
+body {
+    /* Set line height to 1.5 times the font size
+         and use the OS’s UI font as the website font
+       */
+    font: 100%/1.5 system-ui;
+    max-width: 100ch;
+    margin-inline: max(1em, (100% - 100ch) / 2);
+    padding: 1em;
+    color: canvastext; 
+    background-color: canvas;
+}
+
 html {
     accent-color: var(--color-accent);
 }
@@ -36,4 +48,9 @@ nav a:hover {
     border-bottom-width: 0.4em;
     padding-bottom: 0.4em;
     background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+}
+
+
+h1 {
+    text-align: center;   
 }
