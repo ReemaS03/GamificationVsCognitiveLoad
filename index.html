@@ -3,24 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSC106FinalProject</title>
+    <title>Stroop Test</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <script src="navbar.js"></script>
 
-    <h1>Does simple gamification have an impact on the cognitive burden of filling in the surveys?</h1>
-
-    <p> Current Page for Final Project </p>
-
-    <div id="dropdown-container" style="text-align: center; margin-top: 20px;"></div>
-
-    <div id="chart-container">
-        <div id="chart"></div>
+    <h1>Stroop Test</h1>
+    <div id="stroop-container">
+        <h2 id="stroop-word">LOADING...</h2>
     </div>
+    <p>Press the corresponding key for the color of the word:</p>
+    <ul>
+        <li>R - Red</li>
+        <li>G - Green</li>
+        <li>B - Blue</li>
+        <li>Y - Yellow</li>
+    </ul>
 
-    <div id="commit-tooltip"></div>
+    <p id="feedback"></p>
+    <button id="plot-btn" style="display:none;" onclick="window.location.href='plot.html'">Go to Plot</button>
 
-    <script type="module" src="plot.js"></script>
+    <script>
+        const colors = ["red", "green", "blue", "yellow"];
+        const words = ["RED", "GREEN", "BLUE", "YELLOW"];
+
+        function getRandomElement(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        function generateStroopWord() {
+            const word = getRandomElement(words);
+            let color = getRandomElement(colors);
+            while (color.toUpperCase() === word) {  
+                color = getRandomElement(colors);
+            }
+            d3.select("#stroop-word")
+                .text(word)
+                .style("color", color);
+
+            return { word, color };
+        }
+
+        let stroopData = generateStroopWord();
+
+        document.addEventListener("keydown", function(event) {
+            const keyMap = { 'r': "red", 'g': "green", 'b': "blue", 'y': "yellow" };
+            const userResponse = keyMap[event.key.toLowerCase()];
+
+            if (userResponse) {
+                if (userResponse === stroopData.color) {
+                    d3.select("#feedback").text("✅ Correct!").style("color", "green");
+                } else {
+                    d3.select("#feedback").text("❌ Incorrect!").style("color", "red");
+                }
+
+                d3.select("#plot-btn").style("display", "block");
+            }
+        });
+ 
+    </script>
 </body>
 </html>
