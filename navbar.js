@@ -1,5 +1,5 @@
 let pages = [
-    { url: './stroop.html', title: 'Stroop Test' },
+    { url: './index.html', title: 'Stroop Test' },
     { url: './plot.html', title: 'Plot' },
     { url: './writeup.html', title: 'Writeup' }
 ];
