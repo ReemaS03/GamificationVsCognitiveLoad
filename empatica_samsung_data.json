@@ -1,0 +1,1226 @@
+{
+    "empatica_bvp": {
+        "post": {
+            "baseline": [
+                {
+                    "participant_id": 11,
+                    "avg_value": 0.09721406882591092
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 0.011478910838227475
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": -0.37168923124805475
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": -0.05917775503241212
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": -0.029223976906096138
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 0.07200527031621898
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": -0.008571671484441415
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": -0.08714650331801939
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 0.05034593791281373
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": -0.12082943825953943
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": -0.01957671957671958
+                }
+            ],
+            "cognitive_load": [
+                {
+                    "participant_id": 11,
+                    "avg_value": 0.8408188824662813
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 0.328715830183704
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": -0.010010943912448705
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": 0.12323740188829486
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": -0.014215600859615487
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 0.16185926844389337
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 0.016116636261990225
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": -0.14876704078839312
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 0.14552789751684778
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 0.07996494532517132
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": 0.01845464668961324
+                }
+            ],
+            "survey": [
+                {
+                    "participant_id": 11,
+                    "avg_value": -0.007631658321771172
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": -0.15330620549338758
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 0.03806986344871383
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": -0.00024261409004361554
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 0.006951080773606378
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": -0.08899234593229699
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": -0.09099202473958341
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 0.12555924052731948
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": -0.2210851084153214
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 0.06774024250467515
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": 0.01761103523627424
+                }
+            ]
+        },
+        "pre": {
+            "baseline": [
+                {
+                    "participant_id": 11,
+                    "avg_value": -0.051197854588796186
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 0.0913472824700179
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 0.3924814657008947
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": -0.000561202699239765
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": -0.01309830679807939
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": -0.017403502805645298
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": -0.0996889001606222
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 0.18424185888738132
+                },
+                {
+                    "participant_id": 20,
+                    "avg_value": 0.05897825316156486
+                },
+                {
+                    "participant_id": 21,
+                    "avg_value": 0.12883728179551124
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": -0.06973009560876553
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": -0.29408962627212865
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": -0.0007142254827557418
+                }
+            ],
+            "cognitive_load": [
+                {
+                    "participant_id": 11,
+                    "avg_value": -0.011901889534883716
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 0.026643198654967695
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 0.021990074718411974
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": -0.1501120757695343
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 0.13358455773005767
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 0.023387879179871934
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 0.10640588551946889
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": -0.008263985761700916
+                },
+                {
+                    "participant_id": 20,
+                    "avg_value": 0.05897825316156486
+                },
+                {
+                    "participant_id": 21,
+                    "avg_value": -0.039669637934203264
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 0.006016752229127237
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 0.1380225346289022
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": -0.057431272802014266
+                }
+            ],
+            "survey": [
+                {
+                    "participant_id": 11,
+                    "avg_value": -0.007332339024891979
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": -0.04642207208966298
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 0.038952130539014786
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": 0.017666377063423108
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 0.004479808920735407
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": -0.03389939376443423
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 0.3536318363717208
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 0.05531945477075586
+                },
+                {
+                    "participant_id": 20,
+                    "avg_value": -0.019271770393488742
+                },
+                {
+                    "participant_id": 21,
+                    "avg_value": 0.039816211334387015
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 0.05152240638428484
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 0.04871219230491591
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": -0.05041113918719729
+                }
+            ]
+        }
+    },
+    "empatica_eda": {
+        "post": {
+            "baseline": [
+                {
+                    "participant_id": 11,
+                    "avg_value": 0.5242787732793522
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 0.6614905098039215
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 0.08343824999999999
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": 0.06012896862210095
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 1.9577317839673913
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 0.36152908979591836
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 2.1396812340136053
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 2.1866393387755103
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 0.3008126684280053
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 0.3230306086956522
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": 0.28383498329048845
+                }
+            ],
+            "cognitive_load": [
+                {
+                    "participant_id": 11,
+                    "avg_value": 0.24629620000000002
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 0.6303704712078652
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 0.04476178314310799
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": 0.03591936313868613
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 2.0524982065116277
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 0.32859503373015875
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 1.8942427214353164
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 1.5023447703768624
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 0.23152721165048543
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 0.22664533556485358
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": 0.31188348827809215
+                }
+            ],
+            "survey": [
+                {
+                    "participant_id": 11,
+                    "avg_value": 0.5579783297974927
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 0.6845789360780065
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 0.09453039695431473
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": 0.07842666896551724
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 1.5830850972053463
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 0.3742977427490542
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 2.1929745422626787
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 1.299666051724138
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 0.37498469124423967
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 0.3644104898746384
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": 0.26642220174672493
+                }
+            ]
+        },
+        "pre": {
+            "baseline": [
+                {
+                    "participant_id": 11,
+                    "avg_value": 0.44308152588555855
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 0.383597310626703
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 0.17240181582537517
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": 5.703620906976744
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 3.662405206199461
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 0.9528871319727891
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 1.3447046562922869
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 1.2775219009497965
+                },
+                {
+                    "participant_id": 20,
+                    "avg_value": 0.2550616039697543
+                },
+                {
+                    "participant_id": 21,
+                    "avg_value": 0.1732021945137157
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 0.2727592124492558
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 0.1568940533515732
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": 0.2269145870445344
+                }
+            ],
+            "cognitive_load": [
+                {
+                    "participant_id": 11,
+                    "avg_value": 0.4784124906976744
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 0.35780062573591254
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 0.1300172212310437
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": 4.76853347979798
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 3.931923406666667
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 0.6590718250517598
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 0.9645117511961722
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 1.0950665446153847
+                },
+                {
+                    "participant_id": 20,
+                    "avg_value": 0.2550616039697543
+                },
+                {
+                    "participant_id": 21,
+                    "avg_value": 0.11430264411764705
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 0.22982764446366785
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 0.1339822142266336
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": 0.2064786179129006
+                }
+            ],
+            "survey": [
+                {
+                    "participant_id": 11,
+                    "avg_value": 0.5054006784830998
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 0.5728577683155917
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 0.1883694507739938
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": 5.1556178453703705
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 2.9355614024933216
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 1.2084138531791906
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 1.4399521081081081
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 0.9873786719618746
+                },
+                {
+                    "participant_id": 20,
+                    "avg_value": 0.4960423313782991
+                },
+                {
+                    "participant_id": 21,
+                    "avg_value": 0.2467051083032491
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 0.2819001018404908
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 0.1836392426343154
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": 0.22688927946127946
+                }
+            ]
+        }
+    },
+    "empatica_temp": {
+        "post": {
+            "baseline": [
+                {
+                    "participant_id": 11,
+                    "avg_value": 31.49626180836707
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 35.11679706601467
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 29.985920398009952
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": 33.411050477489766
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 35.22239130434782
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 33.24570068027211
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 34.29321088435374
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 32.2944081632653
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 32.45340819022457
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 33.98565217391304
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": 35.01302564102564
+                }
+            ],
+            "cognitive_load": [
+                {
+                    "participant_id": 11,
+                    "avg_value": 31.998153846153848
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 35.797362482369536
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 30.13802110817942
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": 34.230000000000004
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 35.099273066169616
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 33.78202380952381
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 34.531027332704994
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 31.776538124452234
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 33.23267961165049
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 34.97358158995816
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": 34.28978947368421
+                }
+            ],
+            "survey": [
+                {
+                    "participant_id": 11,
+                    "avg_value": 31.29974830590513
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 35.24441910966341
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 31.595319796954314
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": 33.46477876106195
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 36.286921212121214
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 32.949293820933164
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 33.97674902470741
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 33.588793103448275
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 31.875957120980093
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 33.70145208131655
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": 35.76055895196506
+                }
+            ]
+        },
+        "pre": {
+            "baseline": [
+                {
+                    "participant_id": 11,
+                    "avg_value": 31.408201634877383
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 33.93880108991826
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 31.929236016371078
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": 36.47146374829001
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 33.40714285714286
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 32.458843537414964
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 33.83683355886333
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 32.9938263229308
+                },
+                {
+                    "participant_id": 20,
+                    "avg_value": 33.2975236294896
+                },
+                {
+                    "participant_id": 21,
+                    "avg_value": 32.01369077306733
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 33.13746955345061
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 31.274186046511627
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": 34.095128205128205
+                }
+            ],
+            "cognitive_load": [
+                {
+                    "participant_id": 11,
+                    "avg_value": 32.0456511627907
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 34.933566021867115
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 31.953853702051738
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": 35.712760942760944
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 35.07434285714285
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 33.05935817805383
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 34.56016267942584
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 33.58692307692308
+                },
+                {
+                    "participant_id": 20,
+                    "avg_value": 33.2975236294896
+                },
+                {
+                    "participant_id": 21,
+                    "avg_value": 32.444676470588234
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 33.21494809688581
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 31.35995864350703
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": 34.26898931799507
+                }
+            ],
+            "survey": [
+                {
+                    "participant_id": 11,
+                    "avg_value": 31.307098103874694
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 33.41475952529669
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 32.38718614718615
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": 36.22237962962963
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 33.131706666666666
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 31.794250871080138
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 33.497396870554766
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 32.89422434367542
+                },
+                {
+                    "participant_id": 20,
+                    "avg_value": 32.76422135161606
+                },
+                {
+                    "participant_id": 21,
+                    "avg_value": 31.880404332129963
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 32.84158282208589
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 31.275458742065783
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": 33.643468013468016
+                }
+            ]
+        }
+    },
+    "samsung_bvp": {
+        "post": {
+            "baseline": [
+                {
+                    "participant_id": 11,
+                    "avg_value": 1967938.9564003437
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 2060854.320819849
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 1930334.9308668077
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": 1951122.2282157675
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 1766947.971867561
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 1941707.1731648878
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 1724279.5306922072
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 1492368.170493934
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 1904898.20944088
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 1682891.953836151
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": 1542088.903512576
+                }
+            ],
+            "cognitive_load": [
+                {
+                    "participant_id": 11,
+                    "avg_value": 2064705.0172626388
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 1982095.9502028772
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 1859706.4945084383
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": 2149246.448708803
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 1856726.1175927352
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 2110940.25
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 2108937.0977784274
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 1949115.1999442275
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 1949524.214341266
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 1968442.9433408878
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": 1804244.0059701493
+                }
+            ],
+            "survey": [
+                {
+                    "participant_id": 11,
+                    "avg_value": 2064986.8660714286
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 1821573.153244275
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 2026773.85632932
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": 2003957.2528172464
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 1991926.9345226425
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 2084984.0713563776
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 2126797.5537254903
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 1758258.069131481
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 1949441.835517518
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 1843552.906068163
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": 1491954.065
+                }
+            ]
+        },
+        "pre": {
+            "baseline": [
+                {
+                    "participant_id": 11,
+                    "avg_value": 2004600.553288474
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 1841928.3475702768
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 2157420.441001978
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": 2066351.342328618
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 1917891.9997853616
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 1980590.2189336235
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 1879767.90346941
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 1791987.577315116
+                },
+                {
+                    "participant_id": 20,
+                    "avg_value": 2037138.8955653096
+                },
+                {
+                    "participant_id": 21,
+                    "avg_value": 1747107.1529860923
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 2026268.245484222
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 1899955.4057717533
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": 1931167.829965606
+                }
+            ],
+            "cognitive_load": [
+                {
+                    "participant_id": 11,
+                    "avg_value": 2199862.657777778
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 1591667.2970905614
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 2072497.8000285674
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": 2060108.2277001613
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 2023368.497576492
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 2177659.4775086506
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 2026675.6537400368
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 2019828.6423902893
+                },
+                {
+                    "participant_id": 20,
+                    "avg_value": 2037138.8955653096
+                },
+                {
+                    "participant_id": 21,
+                    "avg_value": 2653158.1216009418
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 2030685.6438569208
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 1999456.3989985506
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": 1916978.3043250327
+                }
+            ],
+            "survey": [
+                {
+                    "participant_id": 11,
+                    "avg_value": 1987726.8191363695
+                },
+                {
+                    "participant_id": 12,
+                    "avg_value": 1998087.3673510468
+                },
+                {
+                    "participant_id": 13,
+                    "avg_value": 2142560.6587619046
+                },
+                {
+                    "participant_id": 14,
+                    "avg_value": 2069205.5053892215
+                },
+                {
+                    "participant_id": 15,
+                    "avg_value": 1928336.4111218257
+                },
+                {
+                    "participant_id": 16,
+                    "avg_value": 1705552.1011916786
+                },
+                {
+                    "participant_id": 17,
+                    "avg_value": 2126550.3624115093
+                },
+                {
+                    "participant_id": 18,
+                    "avg_value": 1897517.2904924941
+                },
+                {
+                    "participant_id": 20,
+                    "avg_value": 2052366.2128786624
+                },
+                {
+                    "participant_id": 21,
+                    "avg_value": 2225416.2390277777
+                },
+                {
+                    "participant_id": 22,
+                    "avg_value": 1934637.9864146486
+                },
+                {
+                    "participant_id": 23,
+                    "avg_value": 2109636.556152495
+                },
+                {
+                    "participant_id": 24,
+                    "avg_value": 1856246.869454648
+                }
+            ]
+        }
+    }
+}
