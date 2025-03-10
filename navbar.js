@@ -3,7 +3,7 @@ let pages = [
     { url: './plot.html', title: 'Plot' },
     { url: './plot_design.html', title: 'Designed Plot' },
     { url: './writeup.html', title: 'Writeup' }
-];
+]; 
 
 let nav = document.createElement('nav');
 document.body.prepend(nav);
