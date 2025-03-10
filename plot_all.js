@@ -10,30 +10,30 @@ const deviceMapping = {
     "Muse S EEG Headband": "muse_s"
 };
 
-// Available measurements for each device (this reflects internal keys, e.g., empatica_bvp, samsung_bvp)
+// Available measurements for each device
 const deviceMeasurementMap = {
     "empatica": ["bvp", "eda", "temp"],
     "samsung": ["bvp"], // Samsung only measures BVP
-    "muse_s": [] // Muse can measure BVP and EDA
+    "muse_s": []
 };
 
 // Function to load the data
 async function loadData() {
-    data = await fetchJSON('./empatica_samsung_data.json'); // Adjust the path to your JSON data
+    data = await fetchJSON('./empatica_samsung_data.json');
     if (!data || data.length === 0) {
         console.error('No data found or failed to load data');
         return;
     }
     console.log("Loaded Data:", data);
 
-    // Create dropdowns dynamically after data is loaded
+    // Create dropdowns after data is loaded
     createDropdowns();
 
     // Initialize the plot with default dropdown values
     updatePlot();
 }
 
-// Function to create the dropdowns in JS
+// Function to create the dropdowns
 function createDropdowns() {
     const dropdownContainer = document.getElementById("dropdown-container");
 
@@ -57,7 +57,7 @@ function createDropdowns() {
     dropdownContainer.appendChild(deviceDropdown);
     dropdownContainer.appendChild(document.createElement("br")); // Add a line break
 
-    // Measurement Type dropdown (will be populated dynamically)
+    // Measurement Type dropdown (BVP, EDA, Temp)
     const measurementLabel = document.createElement("label");
     measurementLabel.setAttribute("for", "measurementDropdown");
     measurementLabel.textContent = "Measurement: ";
@@ -68,7 +68,7 @@ function createDropdowns() {
     dropdownContainer.appendChild(measurementDropdown);
     dropdownContainer.appendChild(document.createElement("br")); // Add a line break
 
-    // Condition dropdown
+    // Condition dropdown (baseline, cognitive load, survey)
     const conditionLabel = document.createElement("label");
     conditionLabel.setAttribute("for", "conditionDropdown");
     conditionLabel.textContent = "Condition: ";
@@ -86,7 +86,7 @@ function createDropdowns() {
     dropdownContainer.appendChild(conditionDropdown);
     dropdownContainer.appendChild(document.createElement("br")); // Add a line break
 
-    // Session dropdown
+    // Session dropdown (pre, post)
     const sessionLabel = document.createElement("label");
     sessionLabel.setAttribute("for", "sessionDropdown");
     sessionLabel.textContent = "Experiment Session: ";
@@ -107,7 +107,7 @@ function createDropdowns() {
     // Add event listeners to update the plot when a selection is made
     deviceDropdown.addEventListener("change", updateMeasurementOptions);
     deviceDropdown.addEventListener("change", updatePlot);
-    measurementDropdown.addEventListener("change", updatePlot); // Ensure measurement changes trigger update
+    measurementDropdown.addEventListener("change", updatePlot);
     conditionDropdown.addEventListener("change", updatePlot);
     sessionDropdown.addEventListener("change", updatePlot);
 
@@ -190,16 +190,16 @@ function createScatterplot(device, measurement, condition, session) {
         .attr('font-weight', 'bold')
         .text(titleText);
 
-    // Determine the appropriate yBuffer dynamically based on the measurement
-    let yBuffer = 0.05;  // Default buffer for most measurements
+    // yBuffer for y-axis range
+    let yBuffer = 0.05;
 
     if (device === 'samsung') {
-        // Increase the buffer for high-precision Samsung measurements
+        // Increase the buffer for Samsung measurements
         yBuffer = 10000;
     }
 
-    // Buffer for the axes to ensure points are not too close to the axis
-    const xBuffer = 1;  // Buffer for participant_id
+    // xBuffer for Participant ID range on x-axis
+    const xBuffer = 1;
 
     // X-axis: Participant ID
     const xScale = d3
@@ -229,7 +229,7 @@ function createScatterplot(device, measurement, condition, session) {
         .attr('r', 8)
         .style('fill-opacity', 0.7)
         .on('mouseover', function(event, d) {
-            updateTooltipContent(d);  // Update content with participant ID and BVP value
+            updateTooltipContent(d);  // Update content with participant ID and biometric value
             updateTooltipVisibility(true);  // Show the tooltip
         })
         .on('mousemove', function(event) {

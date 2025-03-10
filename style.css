@@ -58,28 +58,25 @@ h1 {
 /* Style for the chart container */
 #chart-container {
     display: flex;
-    justify-content: center;  /* Centers horizontally */
-    align-items: center;      /* Centers vertically */
-    height: 100vh;            /* Ensure full height to center vertically */
-    margin: 0;                /* Remove any default margin */
-    overflow: hidden;         /* Prevent overflow */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
 }
 
 #chart {
-    margin: 20px auto; /* Center the chart */
-    padding: 20px;  /* Optional padding */
-    display: flex;  /* Flexbox for centering */
-    justify-content: center;  /* Center horizontally */
-    align-items: center;  /* Center vertically */
-    width: 100%;  /* Allow it to take up the full width of the parent container */
-    max-width: 800px;  /* Limit the max width */
-    height: 650px; /* Set the height if necessary */
+    margin: 20px auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
 }
 
-/* Ensure the SVG is contained within the chart div and is not too large */
 #chart svg {
-    width: 100%;  /* Make the SVG responsive to container size */
-    height: 100%; /* Maintain height relative to container size */
+    width: 100%;
+    height: 100%;
 }
 
 /* Styling the axes */
@@ -115,7 +112,7 @@ h1 {
     padding: 10px;
     opacity: 0; /* Initially hidden */
     pointer-events: none;
-    max-width: 250px; /* Optional, limit the width */
+    max-width: 250px; /* Limit the width */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
