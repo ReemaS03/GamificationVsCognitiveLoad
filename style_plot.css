@@ -1,0 +1,131 @@
+body {
+    /* Set line height to 1.5 times the font size
+         and use the OS’s UI font as the website font
+       */
+    font: 100%/1.5 system-ui;
+    max-width: 100ch;
+    margin-inline: max(1em, (100% - 100ch) / 2);
+    padding: 1em;
+    color: canvastext; 
+    background-color: canvas;
+}
+
+html {
+    accent-color: var(--color-accent);
+}
+
+nav {
+    display: flex;
+    margin-bottom: 2em;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    --border-color: oklch(50% 10% 200 / 40%);
+    border-bottom-color: var(--border-color);
+}
+
+nav ul, nav li {
+    display: contents;
+}
+
+nav a {
+    flex: 1;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    padding: 0.5em;
+}
+
+nav a.current {
+    padding-bottom: 0.4em;
+    border-bottom-color: var(--border-color);
+    border-bottom-style: solid;
+    border-bottom-width: 0.4em;
+}
+
+nav a:hover {
+    border-bottom-color: var(--color-accent);
+    border-bottom-style: solid;
+    border-bottom-width: 0.4em;
+    padding-bottom: 0.4em;
+    background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+}
+
+
+h1 {
+    text-align: center;   
+}
+
+.device-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; 
+    margin-top: 20px;
+}
+
+.device-icons .icon {
+    width: 60px; 
+    height: auto;
+    opacity: 0.9;
+}
+
+.chart-container img {
+    width: 100%; 
+    max-width: 250px; 
+}
+
+
+
+.section {
+    opacity: 0;  
+    transform: translateY(50px);  
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    min-height: 50vh; 
+    padding: 50px 10px; 
+   
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section:not(.visible) {
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+#progress-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px; 
+    background: rgba(0, 0, 0, 0.1); 
+    z-index: 1000;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #007bff; 
+    transition: width 0.2s ease-out;
+}
+
+
+#conclusion {
+    /* min-height: 100vh;   */
+    padding: 50px;
+}
+
+.tooltip {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    opacity: 0; /* Initially hidden */
+    pointer-events: none;
+    max-width: 250px; /* Optional, limit the width */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.2s ease-in-out;
+}

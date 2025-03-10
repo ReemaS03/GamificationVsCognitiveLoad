@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrollytelling Plot</title>
+    <link rel="stylesheet" href="style_plot.css">
+</head>
+<body>
+    
+    <div id="progress-bar-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <script src="navbar.js"></script>
+    
+    <section id="intro" class="section">
+        <h1>Does Simple Gamification Impact the Cognitive Burden of Filling in Surveys?</h1>
+        <p class="description">This project explores physiological signals recorded from three different wearable devices (Empatica E4, Samsung Galaxy Watch4, and Muse S EEG Headband) to analyze how cognitive load affects participants.</p>
+        <div class="device-icons">
+            <img src="icons/empatica.svg" alt="Empatica" class="icon">
+            <img src="icons/samsung.svg" alt="Samsung" class="icon">
+            <img src="icons/muse.svg" alt="Muse" class="icon">
+        </div>
+    </section>
+    
+    <section id="empatica" class="section">
+        <div class="content">
+            <div class="text">
+                <h2>Empatica E4 Wristband</h2>
+                <p>A research-grade wearable device that measures BVP, EDA, and skin temperature.</p>
+                <div id="dropdown-container-empatica"></div>
+            </div>
+            <div id="chart-empatica" class="chart-container"></div>
+        </div>
+    </section>
+    
+    <section id="samsung" class="section">
+        <div class="content">
+            <div class="text">
+                <h2>Samsung Galaxy Watch4</h2>
+                <p>A commercial smartwatch that primarily measures Blood Volume Pulse (BVP).</p>
+                <div id="dropdown-container-samsung"></div>
+            </div>
+            <div id="chart-samsung" class="chart-container"></div>
+        </div>
+    </section>
+    
+    <section id="muse" class="section">
+        <div class="content">
+            <div class="text">
+                <h2>Muse S EEG Headband</h2>
+                <p>A headband designed to capture EEG brainwave activity.</p>
+                <div id="dropdown-container-muse"></div>
+            </div>
+            <div id="chart-muse" class="chart-container"></div>
+        </div>
+    </section>
+    
+    <section id="conclusion" class="section">
+        <h2>Conclusion</h2>
+        <p>Through interactive visualizations, we explore how different physiological signals respond to cognitive load conditions across multiple wearable devices.</p>
+    </section>
+    <div id="tooltip" class="tooltip"></div>
+
+    <script type="module" src="plot_scroll.js"></script>
+</body>
+</html>
