@@ -8,7 +8,6 @@ let userSelections = {
     "muse_s": { measurement: null, condition: null, session: null }
 };
 
-
 // Available measurements for each device
 const deviceMeasurementMap = {
     "empatica": ["bvp", "eda", "temp"],
@@ -189,7 +188,7 @@ function createScatterplot(device, measurement, condition, session, containerId)
         .domain(participantIDs)  
         .range([0, width])
         .padding(0.2);  
-        
+
     // Y-axis: avg_value (biometric values)
     const yScale = d3.scaleLinear()
         .domain([d3.min(selectedDeviceData, d => d.avg_value) - 0.05, 
