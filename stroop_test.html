@@ -9,60 +9,22 @@
 </head>
 <body>
     <script src="navbar.js"></script>
-
     <h1>Stroop Test</h1>
     <div id="stroop-container">
         <h2 id="stroop-word">LOADING...</h2>
     </div>
-    <p>Press the corresponding key for the color of the word:</p>
+   
+    <p>Press the key on your keyboard corresponding to the color of the word: </p>
     <ul>
         <li>R - Red</li>
         <li>G - Green</li>
         <li>B - Blue</li>
         <li>Y - Yellow</li>
     </ul>
-
+    <p> You may attempt each word a maximum of two times. There are 3 words in total. In case you would like to end the test early,
+        hit the Go to Plot button to explore the scatterplot.</p>
     <p id="feedback"></p>
-    <button id="plot-btn" style="display:none;" onclick="window.location.href='plot.html'">Go to Plot</button>
-
-    <script>
-        const colors = ["red", "green", "blue", "yellow"];
-        const words = ["RED", "GREEN", "BLUE", "YELLOW"];
-
-        function getRandomElement(arr) {
-            return arr[Math.floor(Math.random() * arr.length)];
-        }
-
-        function generateStroopWord() {
-            const word = getRandomElement(words);
-            let color = getRandomElement(colors);
-            while (color.toUpperCase() === word) {  
-                color = getRandomElement(colors);
-            }
-            d3.select("#stroop-word")
-                .text(word)
-                .style("color", color);
-
-            return { word, color };
-        }
-
-        let stroopData = generateStroopWord();
-
-        document.addEventListener("keydown", function(event) {
-            const keyMap = { 'r': "red", 'g': "green", 'b': "blue", 'y': "yellow" };
-            const userResponse = keyMap[event.key.toLowerCase()];
-
-            if (userResponse) {
-                if (userResponse === stroopData.color) {
-                    d3.select("#feedback").text("✅ Correct!").style("color", "green");
-                } else {
-                    d3.select("#feedback").text("❌ Incorrect!").style("color", "red");
-                }
-
-                d3.select("#plot-btn").style("display", "block");
-            }
-        });
- 
-    </script>
+    <button id="plot-btn" onclick="window.location.href='plot.html'">Go to Plot</button>
+    <script src="stroop.js"></script>
 </body>
 </html>
