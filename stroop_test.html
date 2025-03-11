@@ -7,24 +7,32 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
+
+
+
 <body>
     <script src="navbar.js"></script>
+
     <h1>Stroop Test</h1>
-    <div id="stroop-container">
-        <h2 id="stroop-word">LOADING...</h2>
+    <div class="stroop-flex">
+        <div id="stroop-word-container">
+            <h2 id="stroop-word">LOADING...</h2>
+        </div>
+        <p>Press the key on your keyboard corresponding to the color of the word:</p>
+            <ul>
+                <li>R - Red</li>
+                <li>G - Green</li>
+                <li>B - Blue</li>
+                <li>Y - Yellow</li>
+            </ul>
+        
+        <p id="feedback"></p>
+        <button id="plot-btn" onclick="window.location.href='plot.html'">Go to Plot</button>
+        
     </div>
-   
-    <p>Press the key on your keyboard corresponding to the color of the word: </p>
-    <ul>
-        <li>R - Red</li>
-        <li>G - Green</li>
-        <li>B - Blue</li>
-        <li>Y - Yellow</li>
-    </ul>
-    <p> You may attempt each word a maximum of two times. There are 3 words in total. In case you would like to end the test early,
-        hit the Go to Plot button to explore the scatterplot.</p>
-    <p id="feedback"></p>
-    <button id="plot-btn" onclick="window.location.href='plot.html'">Go to Plot</button>
+
     <script src="stroop.js"></script>
 </body>
+
 </html>
+

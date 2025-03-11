@@ -3,18 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stroop Test Introduction</title>
+    <title>Intro</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <script src="navbar.js"></script>
 
-    <h1>Welcome to the Stroop Test!</h1>
-    <p>The Stroop test measures cognitive interference. You must identify the color of the displayed word, ignoring the word itself.</p>
+    <h1>Welcome!</h1>
+    <p>In 2023, a group of researchers from the Sano Centre for Computational Medicine in Poland conducted a study to investigate whether gamifying surveys
+        increased completion rates. Their study involved 13 participants who completed two experiments: 
+        <ol> 
+            <li> Baseline: A test where participants relaxed for three minutes. </li>
+            <li> Stroop: A cognitively demanding test that required participants to name the ink color of a word, where the word itself was the name of a color (most often different color than the ink). 
+                For instance, the word <span style="color: blue; font-weight: bold;">'RED'</span>, which reads as one color but has been printed in another. </li>
+        </ol>
 
-    <div class = "button-container">
-        <button onclick="window.location.href='stroop_test.html'">Start Test</button>
-        <button onclick="window.location.href='plot.html'">Skip To Plot</button>
+        Through both of these experiments, the biometric signals of the participants were captured using three wearable devices: 
+    </p>
+
+    <ul>
+        <li> Empatica E4 wristband</li>
+        <li> Samsung Galaxy Watch4</li>
+        <li> Muse S EEG headband </li>
+
+    </ul>
+
+    <p> Our project visualizes this data in an intuitive, interactive format. We aim to recreate the gamified aspect of the survey by having our users engage in the Stroop Test, 
+        as the original participants did. Hit Explore below to get started!
+    </p>
+
+    <div class="center-container">
+        <button onclick="window.location.href='test_intro.html'">Explore</button>
     </div>
 </body>
 </html>

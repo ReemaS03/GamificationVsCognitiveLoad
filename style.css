@@ -101,7 +101,7 @@ h1 {
 }
 
 .dots circle:hover {
-    fill: var(--color-accent); /* On hover, change the color */
+    fill: var(--color-accent); 
 }
 
 #commit-tooltip {
@@ -136,7 +136,7 @@ dd {
 button {
     font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 18px;
-    padding: 12px 24px;
+    padding: 12px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -149,19 +149,39 @@ button:hover {
     transform: scale(1.05);
 }
 
-
-.stroop-container {
-    justify-content: center;
-    gap: 20px;
-    display:flex;
+.center-container {
+    text-align: center;
 }
 
-
-#stroop-word {
-    font-size: 30px;
-    font-weight: bold;
-   
+#instructions p, #instructions ul {
+    font-size: 1.1rem;
 }
+
+.jump-container {
+    position: absolute;
+    bottom: 50px;
+    left: 20%; 
+    transition: transform 0.5s ease-in-out;
+}
+
+#jumping-guy {
+    width: 100px;
+    height: auto;
+}
+
+/* Positions for Jumping */
+.jump-spot-1 {
+    transform: translateX(0);
+}
+
+.jump-spot-2 {
+    transform: translateX(200px) translateY(-50px);
+}
+
+.jump-spot-3 {
+    transform: translateX(400px) translateY(-50px);
+}
+
 
 
 #feedback {
