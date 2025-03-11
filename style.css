@@ -157,39 +157,18 @@ button:hover {
     font-size: 1.1rem;
 }
 
-.jump-container {
-    position: absolute;
-    bottom: 50px;
-    left: 20%; 
-    transition: transform 0.5s ease-in-out;
-}
-
-#jumping-guy {
-    width: 100px;
-    height: auto;
-}
-
-/* Positions for Jumping */
-.jump-spot-1 {
-    transform: translateX(0);
-}
-
-.jump-spot-2 {
-    transform: translateX(200px) translateY(-50px);
-}
-
-.jump-spot-3 {
-    transform: translateX(400px) translateY(-50px);
-}
-
-
 
 #feedback {
-    font-size: 20px;
+    min-height: 24px;
     font-weight: bold;
-    padding: 10px;
-    border-radius: 8px;
-    display: inline-block;
+    font-size: 20px;
+}
+
+#progress-character {
+    position: absolute;
+    left: 0;
+    height: 40px;
+    transition: left 60s linear; 
 }
 
 
