@@ -55,7 +55,6 @@ h1 {
     text-align: center;   
 }
 
-/* Style for the chart container */
 #chart-container {
     display: flex;
     justify-content: center;
@@ -110,7 +109,7 @@ h1 {
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 10px;
-    opacity: 0; /* Initially hidden */
+    opacity: 0;
     pointer-events: none;
     max-width: 250px; /* Limit the width */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);

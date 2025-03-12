@@ -3,7 +3,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm";
 
 let data = [];
 
-// Mapping of the dropdown labels (device names only) to internal keys in the JSON data
+// Mapping of dropdown labels (device names only) to internal keys in JSON data
 const deviceMapping = {
     "Empatica E4 Wristband": "empatica",
     "Samsung Galaxy Watch4": "samsung",
@@ -17,7 +17,7 @@ const deviceMeasurementMap = {
     "muse_s": []
 };
 
-// Function to load the data
+// Function to load  data
 async function loadData() {
     data = await fetchJSON('./empatica_samsung_data.json');
     if (!data || data.length === 0) {
@@ -29,11 +29,11 @@ async function loadData() {
     // Create dropdowns after data is loaded
     createDropdowns();
 
-    // Initialize the plot with default dropdown values
+    // Initialize  plot with default dropdown values
     updatePlot();
 }
 
-// Function to create the dropdowns
+// Function to create dropdowns
 function createDropdowns() {
     const dropdownContainer = document.getElementById("dropdown-container");
 
@@ -46,7 +46,7 @@ function createDropdowns() {
     const deviceDropdown = document.createElement("select");
     deviceDropdown.setAttribute("id", "deviceDropdown");
     
-    // Add options to the device dropdown (only device names)
+    // Add options to device dropdown (only device names)
     for (const deviceName in deviceMapping) {
         const option = document.createElement("option");
         option.value = deviceMapping[deviceName];
@@ -104,18 +104,18 @@ function createDropdowns() {
     dropdownContainer.appendChild(sessionDropdown);
     dropdownContainer.appendChild(document.createElement("br")); // Add a line break
 
-    // Add event listeners to update the plot when a selection is made
+    // Add event listeners to update plot when a selection is made
     deviceDropdown.addEventListener("change", updateMeasurementOptions);
     deviceDropdown.addEventListener("change", updatePlot);
     measurementDropdown.addEventListener("change", updatePlot);
     conditionDropdown.addEventListener("change", updatePlot);
     sessionDropdown.addEventListener("change", updatePlot);
 
-    // Initialize the measurement dropdown based on the first device
+    // Initialize  measurement dropdown based on first device
     updateMeasurementOptions();
 }
 
-// Update the Measurement Type dropdown based on the selected device
+// Update  Measurement Type dropdown based on selected device
 function updateMeasurementOptions() {
     const device = document.getElementById("deviceDropdown").value;
     const measurementDropdown = document.getElementById("measurementDropdown");
@@ -123,10 +123,10 @@ function updateMeasurementOptions() {
     // Clear existing options
     measurementDropdown.innerHTML = "";
 
-    // Get available measurements for the selected device
+    // Get available measurements for selected device
     const availableMeasurements = deviceMeasurementMap[device] || [];
 
-    // Add the measurements to the dropdown
+    // Add  measurements to dropdown
     availableMeasurements.forEach(measurement => {
         const option = document.createElement("option");
         option.value = measurement;
@@ -135,7 +135,7 @@ function updateMeasurementOptions() {
     });
 }
 
-// Function to update the plot based on dropdown selections
+// Function to update plot based on dropdown selections
 function updatePlot() {
     const device = document.getElementById("deviceDropdown").value;
     const measurement = document.getElementById("measurementDropdown").value;
@@ -152,7 +152,7 @@ function createScatterplot(device, measurement, condition, session) {
         return;  // Exit if no data is available
     }
 
-    // Access the correct data based on the selected device, measurement, condition, and session
+    // Access correct data based on selected device, measurement, condition, and session
     const selectedDeviceData = data[`${device}_${measurement}`]?.[session]?.[condition];
 
     if (!selectedDeviceData) {
@@ -160,8 +160,8 @@ function createScatterplot(device, measurement, condition, session) {
         return;
     }
 
-    // Set the width and height of the plot and define margins
-    const margin = { top: 50, right: 30, bottom: 70, left: 60 };
+    // Set width and height of plot and define margins
+    const margin = { top: 80, right: 30, bottom: 70, left: 80 };
     const width = 750 - margin.left - margin.right;  // Adjust width
     const height = 500 - margin.top - margin.bottom;  // Adjust height
 
@@ -175,18 +175,18 @@ function createScatterplot(device, measurement, condition, session) {
         .append('g')
         .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-    // Create the title based on the selected options
+    // Create title based on selected options
     const deviceName = Object.keys(deviceMapping).find(name => deviceMapping[name] === device);
     const conditionName = condition.replace(/_/g, " ").replace(/\b\w/g, char => char.toUpperCase());
     const sessionName = session === 'pre' ? "Experiment Session 1" : "Experiment Session 2";
-    const titleText = `${deviceName} (${measurement.toUpperCase()}) ${conditionName} ${sessionName}`;
+    const titleText = `${deviceName} (${measurement.toUpperCase()}) - ${conditionName}, ${sessionName}`;
 
-    // Add title to the plot
+    // Add title to plot
     svg.append('text')
         .attr('x', width / 2)
-        .attr('y', -20)
+        .attr('y', -40)
         .attr('text-anchor', 'middle')
-        .attr('font-size', '16px')
+        .attr('font-size', '20px')
         .attr('font-weight', 'bold')
         .text(titleText);
 
@@ -194,7 +194,7 @@ function createScatterplot(device, measurement, condition, session) {
     let yBuffer = 0.05;
 
     if (device === 'samsung') {
-        // Increase the buffer for Samsung measurements
+        // Increase  buffer for Samsung measurements
         yBuffer = 10000;
     }
 
@@ -230,13 +230,13 @@ function createScatterplot(device, measurement, condition, session) {
         .style('fill-opacity', 0.7)
         .on('mouseover', function(event, d) {
             updateTooltipContent(d);  // Update content with participant ID and biometric value
-            updateTooltipVisibility(true);  // Show the tooltip
+            updateTooltipVisibility(true);  // Show  tooltip
         })
         .on('mousemove', function(event) {
             updateTooltipPosition(event);  // Update tooltip position based on mouse movement
         })
         .on('mouseout', function() {
-            updateTooltipVisibility(false);  // Hide the tooltip when the mouse leaves the circle
+            updateTooltipVisibility(false);  // Hide  tooltip when the mouse leaves the circle
         });
 
     // X-axis
@@ -246,7 +246,7 @@ function createScatterplot(device, measurement, condition, session) {
         .attr('class', 'axis-tick')
         .append('text')
         .attr('x', width / 2)
-        .attr('y', 40)
+        .attr('y', 70)
         .attr('fill', 'black')
         .attr('text-anchor', 'middle')
         .text("Participant ID")
@@ -259,7 +259,7 @@ function createScatterplot(device, measurement, condition, session) {
         .append('text')
         .attr('transform', 'rotate(-90)')
         .attr('x', -height / 2)
-        .attr('y', -40)
+        .attr('y', -70)
         .attr('fill', 'black')
         .attr('text-anchor', 'middle')
         .text('Avg Value')
@@ -284,9 +284,29 @@ function updateTooltipVisibility(isVisible) {
 
 function updateTooltipPosition(event) {
     const tooltip = document.getElementById('commit-tooltip');
-    tooltip.style.left = `${event.clientX}px`;
-    tooltip.style.top = `${event.clientY}px`;
+
+    // Tooltip dimensions
+    const tooltipWidth = tooltip.offsetWidth;
+    const tooltipHeight = tooltip.offsetHeight;
+
+    // Account for scroll positions
+    const scrollOffsetX = window.scrollX || window.pageXOffset;
+    const scrollOffsetY = window.scrollY || window.pageYOffset;
+
+    // Position tooltip
+    const tooltipX = event.clientX + 10 + scrollOffsetX;
+    const tooltipY = event.clientY - tooltipHeight - 10 + scrollOffsetY;
+
+    // Ensure tooltip doesn't go off-screen
+    const maxX = window.innerWidth - tooltipWidth - 10 + scrollOffsetX;
+    const maxY = window.innerHeight - tooltipHeight - 10 + scrollOffsetY;
+    const finalX = Math.min(Math.max(tooltipX, 10), maxX);
+    const finalY = Math.min(Math.max(tooltipY, 10), maxY);
+
+    // Apply position to tooltip
+    tooltip.style.left = `${finalX}px`;
+    tooltip.style.top = `${finalY}px`;
 }
 
-// Load the data when the page loads
+// Load data when page loads
 loadData();
