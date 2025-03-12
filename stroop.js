@@ -20,7 +20,7 @@ function moveDude() {
 }
 
 function updateCounter() {
-    d3.select("#counter").text(`Questions Completed: ${wordIndex} / ${totalWords}`);
+    d3.select("#counter").text(`Questions Completed: ${correctAnswers} / ${totalWords}`);
 }
 
 function generateStroopWord() {
@@ -63,7 +63,9 @@ document.addEventListener("keydown", function(event) {
 
         if (userResponse === stroopData.color) {
             correctAnswers++; 
-            moveDude(); 
+            moveDude();
+            updateCounter();
+
             d3.select("#feedback")
               .text("✅ Correct!")
               .style("color", "green");
