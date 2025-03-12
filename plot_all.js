@@ -246,7 +246,7 @@ function createScatterplot(device, measurement, condition, session) {
         .attr('class', 'axis-tick')
         .append('text')
         .attr('x', width / 2)
-        .attr('y', 70)
+        .attr('y', 40)
         .attr('fill', 'black')
         .attr('text-anchor', 'middle')
         .text("Participant ID")

@@ -52,7 +52,11 @@ nav a:hover {
 
 
 h1 {
-    text-align: center;   
+    text-align: center;
+}
+
+#dropdown-container {
+    text-align: center;
 }
 
 #chart-container {
