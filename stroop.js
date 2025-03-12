@@ -2,19 +2,25 @@ const colors = ["red", "green", "blue", "yellow"];
 const words = ["RED", "GREEN", "BLUE", "YELLOW"];
 let attemptCount = 0;
 const maxAttempts = 2;
-let wordIndex = 0;
-const totalWords = 3;
+let correctAnswers = 0; 
+let wordIndex = 0; 
+const totalWords = 3; 
 let stroopData = null;
-
 
 function moveDude() {
     let navbar = document.querySelector("script[src='navbar.js']"); 
     if (!navbar) return; 
+
     let navbarWidth = navbar.parentElement.clientWidth; 
     let maxMove = navbarWidth - 50; 
-    let stepSize = maxMove / (totalWords - 1); 
-    let newPosition = wordIndex * stepSize;
+    let stepSize = maxMove / totalWords; 
+
+    let newPosition = correctAnswers * stepSize; 
     d3.select("#progress-character").style("left", `${newPosition}px`);
+}
+
+function updateCounter() {
+    d3.select("#counter").text(`Questions Completed: ${wordIndex} / ${totalWords}`);
 }
 
 function generateStroopWord() {
@@ -36,9 +42,8 @@ function generateStroopWord() {
         .text(word)
         .style("color", color);
 
-    moveDude();    
-
-    wordIndex++;
+    wordIndex++; 
+    updateCounter();
     return { word, color };
 }
 function getRandomElement(arr) {
@@ -46,6 +51,7 @@ function getRandomElement(arr) {
 }
 
 stroopData = generateStroopWord();
+
 document.addEventListener("keydown", function(event) {
     if (!stroopData) return;
 
@@ -56,7 +62,8 @@ document.addEventListener("keydown", function(event) {
         attemptCount++;
 
         if (userResponse === stroopData.color) {
-            d3.select("#plot-btn").style("display", "block");
+            correctAnswers++; 
+            moveDude(); 
             d3.select("#feedback")
               .text("✅ Correct!")
               .style("color", "green");
@@ -101,4 +108,3 @@ document.addEventListener("keydown", function(event) {
         }
     }
 });
-
