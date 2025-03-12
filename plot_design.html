@@ -16,11 +16,32 @@
     
     <section id="intro" class="section">
         <h1>Does Simple Gamification Impact the Cognitive Burden of Filling in Surveys?</h1>
-        <p class="description">This project explores physiological signals recorded from three different wearable devices (Empatica E4, Samsung Galaxy Watch4, and Muse S EEG Headband) to analyze how cognitive load affects participants.</p>
+        <p class="description">
+            We are using two datasets: a pilot study and a survey gamification experiment.<br><br>
+
+            <strong>The pilot dataset</strong> includes physiological signals from 11 volunteers captured by three wearable devices: Empatica E4, Samsung Galaxy Watch4, and Muse S EEG headband, in two conditions:
+            <ul>
+                <li><strong>Stroop Test:</strong> A cognitive task where participants name the ink color of a word instead of reading the word itself. This requires focus and is mentally demanding. You’ve already experienced this earlier in the project!</li>
+                <li><strong>Baseline Condition:</strong> Participants sat in a relaxed position for three minutes with no distractions or tasks.</li>
+            </ul>
+            
+            <strong>This dataset helps evaluate whether consumer-grade smartwatches can detect cognitive load during demanding tasks.</strong><br><br>
+            
+            <strong>The survey gamification dataset</strong> includes physiological signals from 13 volunteers using the same three wearable devices across two sessions. 
+            
+            In both sessions, participants completed a cognitive task, took a break, and then filled out four work and well-being surveys (GRIT, PANAS, HAPPINESS, and NFR). The surveys were either gamified or non-gamified, with participants split into two groups:
+            <ul>
+                <li><strong>Group 1:</strong> Gamified surveys first, non-gamified in the second session.</li>
+                <li><strong>Group 2:</strong> Non-gamified surveys first, then gamified.</li>
+            </ul> 
+            
+            Sessions were spaced two weeks apart.<br><br>
+            
+            <strong>This dataset explores whether simple gamification reduces the cognitive burden of survey completion.</strong>
+        </p>
         <div class="device-icons">
             <img src="icons/empatica1.svg" alt="Empatica" class="icon">
             <img src="icons/samsung2.svg" alt="Samsung" class="icon">
-            <img src="icons/muse3.svg" alt="Muse" class="icon">
         </div>
     </section>
     
@@ -28,38 +49,66 @@
         <div class="content">
             <div class="text">
                 <h2>Empatica E4 Wristband</h2>
-                <p>A research-grade wearable device that measures BVP, EDA, and skin temperature.</p>
+                <p>
+                    The <strong>Empatica E4</strong> is a <strong>wrist-worn, research-grade wearable</strong> and a <strong>Class IIa Medical Device</strong> designed for physiological monitoring. It measures key biometric signals, including:
+                </p>
+                <ul>
+                    <li><strong>Blood Volume Pulse (BVP):</strong> Used to derive <strong>Heart Rate Variability (HRV)</strong> and <strong>Inter-Beat Interval (IBI)</strong>, providing insights into cardiovascular activity.</li>
+                    <li><strong>Electrodermal Activity (EDA):</strong> Captures skin conductance, reflecting <strong>emotional arousal and stress responses</strong>.</li>
+                    <li><strong>Skin Temperature (TEMP):</strong> Monitors changes in body temperature, which can indicate <strong>stress, activity levels, or environmental adaptation</strong>.</li>
+                </ul>
+                <p>
+                    This device is widely used in <strong>research on cognitive load, stress, and emotional regulation</strong>. Understanding these signals will help in exploring their variations in different conditions.
+                </p>
                 <div id="dropdown-container-empatica"></div>
             </div>
-            <div id="chart-empatica" class="chart-container"></div>
+    
+            <!-- Chart and Correlation Box -->
+            <div class="chart-icon-container">
+                <div id="chart-empatica" class="chart-container"></div>
+            </div>
         </div>
     </section>
+    
     
     <section id="samsung" class="section">
         <div class="content">
             <div class="text">
                 <h2>Samsung Galaxy Watch4</h2>
-                <p>A commercial smartwatch that primarily measures Blood Volume Pulse (BVP).</p>
+                <p>
+                    The <strong>Samsung Galaxy Watch4</strong> is a <strong>consumer-grade smartwatch</strong> running on Wear OS. It was used in this study to collect Photoplethysmogram (PPG) signals, which measure blood flow variations and can be analyzed to assess cognitive load.
+                
+                    <ul>
+                        <li><strong>Blood Volume Pulse (BVP):</strong> A PPG-derived signal that tracks changes in blood volume and heart activity. The Galaxy Watch4 captures PPG Green signals using the Samsung Privileged Health SDK.</li>
+                    </ul>
+                
+                    The collected signal is stored and available for further analysis below.<br>                    
+                    <strong>Note:</strong> Unlike the Empatica E4, the Samsung Galaxy Watch4 only records Blood Volume Pulse (BVP).
+                </p>
                 <div id="dropdown-container-samsung"></div>
             </div>
             <div id="chart-samsung" class="chart-container"></div>
         </div>
     </section>
     
-    <section id="muse" class="section">
-        <div class="content">
-            <div class="text">
-                <h2>Muse S EEG Headband</h2>
-                <p>A headband designed to capture EEG brainwave activity.</p>
-                <div id="dropdown-container-muse"></div>
-            </div>
-            <div id="chart-muse" class="chart-container"></div>
-        </div>
-    </section>
-    
     <section id="conclusion" class="section">
         <h2>Conclusion</h2>
-        <p>Through interactive visualizations, we explore how different physiological signals respond to cognitive load conditions across multiple wearable devices.</p>
+        <p>
+            Through <strong>interactive visualizations</strong>, we explored how different <strong>physiological signals</strong> respond to 
+            <strong>cognitive load conditions</strong> across multiple <strong>wearable devices</strong>.
+        </p>
+        <p>
+            Our analysis provides insights into:
+        </p>
+        <ul>
+            <li><strong>Variability in physiological responses:</strong> Different biometric signals (e.g., BVP, EDA, Temperature) react uniquely under cognitive stress.</li>
+            <li><strong>Device comparisons:</strong> Observing trends across multiple wearables allows us to assess their effectiveness in monitoring cognitive load.</li>
+            <li><strong>Individual-level insights:</strong> By enabling participant-specific visualizations, we capture personalized physiological trends over time.</li>
+        </ul>
+        <p>
+            By integrating <strong>real-time interactivity</strong> and <strong>smooth transitions</strong>, we provide a dynamic tool for 
+            exploring the nuanced relationship between cognitive load and biometric data. 
+        </p>
     </section>
     <div id="tooltip" class="tooltip"></div>
 

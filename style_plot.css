@@ -16,7 +16,7 @@ html {
 
 nav {
     display: flex;
-    margin-bottom: 2em;
+    /* margin-bottom: 2em; */
     border-bottom-width: 1px;
     border-bottom-style: solid;
     --border-color: oklch(50% 10% 200 / 40%);
@@ -130,3 +130,151 @@ h1 {
     transition: opacity 0.2s ease-in-out;
 }
  
+/* Style for the dropdown container */
+[id^="dropdown-container"] {
+    display: flex;  /* Align dropdowns horizontally */
+    align-items: center; /* Vertically align elements */
+    gap: 15px; /* Space between dropdowns */
+    padding: 10px 15px; /* Padding inside the container */
+    background-color: #e3f2fd; /* Light blue background */
+    border-radius: 8px; /* Rounded corners */
+    width: fit-content; /* Only as wide as the content */
+    margin: 15px auto; /* Centering */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow effect */
+}
+
+/* Style for dropdown lists */
+[id^="dropdown-container"] select {
+    padding: 8px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Style for dropdown labels */
+[id^="dropdown-container"] label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Label container to properly stack the text */
+.label-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the text */
+}
+
+/* Style the second line (Y-Axis) */
+.sub-label {
+    font-size: 12px;
+    font-weight: normal;
+    display: block;
+    margin-top: 2px;
+    color: gray;
+    text-align: center; /* Center within the label */
+}
+
+
+/* Flexbox to place chart and icon next to each other */
+.chart-icon-container {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between chart and icon */
+}
+
+/* Correlation Icon Styling */
+.correlation-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(240, 248, 255, 0.8); /* Light blue */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    transition: opacity 0.6s ease-in-out;
+}
+
+/* Hide explanation by default */
+.correlation-info {
+    display: none;
+    position: absolute;
+    width: 200px;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    font-size: 12px;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Show explanation when hovering over the icon */
+.correlation-icon:hover .correlation-info {
+    display: block;
+}
+
+/* High and Low correlation text styling */
+.high-correlation {
+    color: blue;
+    font-weight: bold;
+}
+
+.low-correlation {
+    color: red;
+    font-weight: bold;
+}
+
+/* Fade-in effect */
+.correlation-icon {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Make it visible when section is in view */
+.section.visible .correlation-icon {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.tooltip {
+    position: absolute;
+    background-color: rgba(251, 160, 138, 0.95) !important; /* Lighter Red (Light Salmon) */
+    border: 2px solid black; /* Thicker black outline */
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 14px;
+    color: black; /* Dark text for better readability */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    pointer-events: none; /* Prevents cursor interaction */
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-out;
+    transform: translateY(-5px); /* Slight move-up effect */
+    max-width: 220px;
+}
+.chart-container {
+    background: #e3f2fd; /* Light blue */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(0, 0, 0, 0.1); /* Light border */
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    margin: 20px auto; /* Centers horizontally (works if block-level) */
+    width: 80%; /* Adjust width as needed */
+    max-width: 800px; /* Prevents it from getting too big */
+}
+
+.chart-container:hover {
+    transform: scale(1.02); /* Slight zoom effect */
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+}

@@ -4,15 +4,15 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm";
 let data = [];
 let userSelections = {
     "empatica": { measurement: null, condition: null, session: null },
-    "samsung": { measurement: null, condition: null, session: null },
-    "muse_s": { measurement: null, condition: null, session: null }
+    "samsung": { measurement: null, condition: null, session: null }
+    // "muse_s": { measurement: null, condition: null, session: null }
 };
 
 // Available measurements for each device
 const deviceMeasurementMap = {
     "empatica": ["bvp", "eda", "temp"],
-    "samsung": ["bvp"], // Samsung only measures BVP
-    "muse_s": ["bvp", "eda"] // Muse can measure BVP and EDA
+    "samsung": ["bvp"] // Samsung only measures BVP
+    // "muse_s": ["bvp", "eda"] // Muse can measure BVP and EDA
 };
 
 // Function to load the data
@@ -23,12 +23,17 @@ async function loadData() {
         return;
     }
     console.log("Loaded Data:", data);
-
+    
     // Create dropdowns for each device
     createDropdowns("empatica");
     createDropdowns("samsung");
     // createDropdowns("muse_s");
 
+    setTimeout(() => {
+        updatePlot("empatica", true);
+        updatePlot("samsung", true);
+    }, 100); // Small delay (100ms) to ensure dropdowns are available
+    
 }
 
 
@@ -36,17 +41,24 @@ async function loadData() {
 function createDropdowns(device) {
     const dropdownContainer = document.getElementById(`dropdown-container-${device}`);
 
-    // Measurement Type dropdown
+    // Create a label container div
+    const labelContainer = document.createElement("div");
+    labelContainer.classList.add("label-container"); // Apply CSS styling
+
+    // Measurement Type label (with two lines)
     const measurementLabel = document.createElement("label");
     measurementLabel.setAttribute("for", `measurementDropdown-${device}`);
-    measurementLabel.textContent = "Measurement: ";
-    dropdownContainer.appendChild(measurementLabel);
+    measurementLabel.innerHTML = "Measurement:<br><span class='sub-label'>(Y-Axis)</span>"; // Use innerHTML for line break
 
+    labelContainer.appendChild(measurementLabel);
+    dropdownContainer.appendChild(labelContainer); // Add to container
+
+
+    // Measurement dropdown
     const measurementDropdown = document.createElement("select");
     measurementDropdown.setAttribute("id", `measurementDropdown-${device}`);
     dropdownContainer.appendChild(measurementDropdown);
-    dropdownContainer.appendChild(document.createElement("br")); 
-
+    dropdownContainer.appendChild(document.createElement("br"));
     // Condition dropdown
     const conditionLabel = document.createElement("label");
     conditionLabel.setAttribute("for", `conditionDropdown-${device}`);
@@ -82,7 +94,8 @@ function createDropdowns(device) {
     });
     dropdownContainer.appendChild(sessionDropdown);
     dropdownContainer.appendChild(document.createElement("br"));
-
+    
+    
     // Event Listeners to store user selections before updating plot
     measurementDropdown.addEventListener("change", () => {
         userSelections[device].measurement = measurementDropdown.value;
@@ -101,6 +114,8 @@ function createDropdowns(device) {
 
     // Initialize the measurement dropdown based on the first device
     updateMeasurementOptions(device);
+    updatePlot(device, true);  
+
 }
 
 
@@ -121,6 +136,7 @@ function updateMeasurementOptions(device) {
         option.textContent = measurement.toUpperCase();
         measurementDropdown.appendChild(option);
     });
+
 }
 
 // Function to update the plot based on dropdown selections for a specific device
@@ -129,9 +145,15 @@ function updatePlot(device, isInitialLoad = false) {
     const conditionDropdown = document.getElementById(`conditionDropdown-${device}`);
     const sessionDropdown = document.getElementById(`sessionDropdown-${device}`);
 
+    // if (!measurementDropdown || !conditionDropdown || !sessionDropdown) {
+    //     console.error(`Dropdowns not found for ${device}, skipping update.`);
+    //     return;
+    // }
     // If first time loading and user has not selected anything, apply default values
     if (isInitialLoad && !userSelections[device].measurement) {
-        userSelections[device].measurement = measurementDropdown.options[0].value;
+        // console.log(device);
+        // console.log(measurementDropdown.options[0].value);
+        userSelections[device].measurement = "bvp";
         userSelections[device].condition = "baseline";
         userSelections[device].session = "pre";
     }
@@ -207,23 +229,56 @@ function createScatterplot(device, measurement, condition, session, containerId)
         .style("border-radius", "5px");
 
     // Scatter plot points with tooltip
+    // Scatter plot points with hover effects and tooltip
     svg.selectAll("circle")
-        .data(selectedDeviceData)
-        .join("circle")
-        .attr("cx", d => xScale(d.participant_id) + xScale.bandwidth() / 2)  
-        .attr("cy", d => yScale(d.avg_value))
-        .attr("r", 6)
-        .attr("fill", "#007bff")
-        .attr("opacity", 0.7)
-        .on("mouseover", (event, d) => {
-            tooltip.style("opacity", 1)
-                .html(`Participant ID: ${d.participant_id}<br>Value: ${d.avg_value.toFixed(3)}`)
-                .style("left", `${event.pageX + 10}px`)
-                .style("top", `${event.pageY}px`);
-        })
-        .on("mouseout", () => {
-            tooltip.style("opacity", 0);
-        });
+    .data(selectedDeviceData)
+    .join("circle")
+    .attr("cx", d => xScale(d.participant_id) + xScale.bandwidth() / 2)  
+    .attr("cy", d => yScale(d.avg_value))
+    .attr("r", 6) // Default size
+    .attr("fill", "#007bff")
+    .attr("opacity", 0.7)
+    .style("transition", "all 0.2s ease-out")
+    .on("mouseover", function(event, d) {
+        d3.select(this)
+            .transition()
+            .duration(150)
+            .attr("r", 10) // Make dot bigger on hover
+            .attr("fill", "#ff6347") // Change color (Tomato Red)
+            .style("stroke", "#000") // Add black outline
+            .style("stroke-width", "2px");
+    
+        tooltip.style("opacity", 1)
+            .style("background-color", "rgba(255, 99, 71, 0.9)") // Match dot hover color
+            .html(`<strong>Participant ID:</strong> ${d.participant_id}<br>
+                   <strong>Value:</strong> ${d.avg_value.toFixed(3)}`)
+            .style("left", `${event.pageX + 15}px`)
+            .style("top", `${event.pageY + 15}px`)
+            .style("transform", "translateY(0)"); // Moves tooltip smoothly into place
+    })
+    .on("mousemove", function(event) {
+        tooltip.style("left", `${event.pageX + 15}px`)
+               .style("top", `${event.pageY + 15}px`);
+    })
+    .on("mouseout", function() {
+        d3.select(this)
+            .transition()
+            .duration(150)
+            .attr("r", 6) // Reset size
+            .attr("fill", "#007bff") // Reset color
+            .style("stroke", "none"); // Remove outline
+    
+        tooltip.style("opacity", 0)
+               .style("transform", "translateY(-5px)"); // Moves tooltip slightly up when fading out
+    })
+    .on("click", function(event, d) {
+        // Hide tooltip immediately
+        tooltip.style("opacity", 0);
+    
+        // Show line plot
+        showLinePlot(device, measurement, condition, session, d.participant_id, containerId);
+    });
+    
 
     // X-axis with all participant IDs
     svg.append("g")
@@ -257,7 +312,7 @@ function createScatterplot(device, measurement, condition, session, containerId)
         .append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", -height / 2)
-        .attr("y", -50)
+        .attr("y", -70)
         .attr("fill", "black")
         .attr("text-anchor", "middle")
         .attr("font-size", "14px")
@@ -273,12 +328,188 @@ function createScatterplot(device, measurement, condition, session, containerId)
         .text(`${device.toUpperCase()} - ${measurement.toUpperCase()} (${condition}, ${session})`);
 }
 
+async function showLinePlot(device, measurement, condition, session, participantId, containerId) {
+    const plotContainer = d3.select(`#${containerId}`);
+
+    // Step 1: Fade out scatter plot
+    plotContainer.transition()
+        .duration(500)
+        .style("opacity", 0)
+        .on("end", async function () { 
+            // Step 2: Instead of clearing immediately, hide it first
+            plotContainer.style("visibility", "hidden");
+
+            // Step 3: Wait a tiny bit (prevents empty screen flash)
+            setTimeout(async () => {
+                plotContainer.html("");  // Now clear it
+
+                // Step 4: Back Button (always visible)
+                plotContainer.append("button")
+                    .text("Back")
+                    .attr("class", "back-button")
+                    .style("position", "fixed")
+                    .style("top", "10px")
+                    .style("left", "10px")
+                    .style("z-index", "1000")
+                    .style("background", "#ff6347")
+                    .style("color", "white")
+                    .style("border", "none")
+                    .style("padding", "8px 15px")
+                    .style("border-radius", "5px")
+                    .style("cursor", "pointer")
+                    .on("click", function () {
+                        // Fade out line plot first
+                        d3.select(`#${containerId}`)
+                            .transition()
+                            .duration(500)
+                            .style("opacity", 0)
+                            .on("end", function () {
+                                // Then clear and show scatter
+                                updatePlot(device);
+                    
+                                // Fade scatter plot back in smoothly
+                                d3.select(`#${containerId}`)
+                                    .style("opacity", 0) // Set it hidden first
+                                    .transition()
+                                    .duration(500)
+                                    .style("opacity", 1); // Fade it back in
+                            });
+                    });
+                    
+
+                let participantData = await fetchParticipantData(participantId, measurement, session, condition);
+
+                // Sort by time (ascending order)
+                participantData.sort((a, b) => a.time - b.time);
+                                    
+                if (!participantData) {
+                    plotContainer.append("p").text("No data available for this participant.");
+                    return;
+                }
+
+                const margin = { top: 50, right: 30, bottom: 100, left: 80 };
+                const width = 750 - margin.left - margin.right;
+                const height = 500 - margin.top - margin.bottom;
+
+                const svg = plotContainer
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+                const xScale = d3.scaleLinear()
+                    .domain([0, d3.max(participantData, d => d.time)])
+                    .range([0, width]);
+
+                const yScale = d3.scaleLinear()
+                    .domain([d3.min(participantData, d => d.value) - 0.05, d3.max(participantData, d => d.value) + 0.05])
+                    .range([height, 0]);
+
+                const line = d3.line()
+                    .x(d => xScale(d.time))
+                    .y(d => yScale(d.value));
+
+                // Create the path
+                const path = svg.append("path")
+                .datum(participantData)
+                .attr("fill", "none")
+                .attr("stroke", "#ff6347")
+                .attr("stroke-width", 2)
+                .attr("d", line)
+                .attr("stroke-dasharray", function() {
+                    return this.getTotalLength();  
+                })
+                .attr("stroke-dashoffset", function() {
+                    return this.getTotalLength();  
+                })
+                .transition()
+                .duration(10000)  
+                .ease(d3.easeLinear)
+                .attrTween("stroke-dashoffset", function() {
+                    const length = this.getTotalLength();
+                    return function(t) {
+                        return length * (1 - t); // Smoothly draws from left to right
+                    };
+                });
+                
+
+                svg.append("g")
+                    .attr("transform", `translate(0, ${height})`)
+                    .call(d3.axisBottom(xScale));
+
+                svg.append("g")
+                    .call(d3.axisLeft(yScale));
+
+                svg.append("text")
+                    .attr("x", width / 2)
+                    .attr("y", height + 40)
+                    .attr("fill", "black")
+                    .attr("text-anchor", "middle")
+                    .attr("font-size", "14px")
+                    .text("Time (seconds)");
+
+                svg.append("text")
+                    .attr("transform", "rotate(-90)")
+                    .attr("x", -height / 2)
+                    .attr("y", -50)
+                    .attr("fill", "black")
+                    .attr("text-anchor", "middle")
+                    .attr("font-size", "14px")
+                    .text(measurement.toUpperCase());
+
+                svg.append("text")
+                    .attr("x", width / 2)
+                    .attr("y", -20)
+                    .attr("text-anchor", "middle")
+                    .attr("font-size", "16px")
+                    .attr("font-weight", "bold")
+                    .text(`Participant ${participantId} - ${measurement.toUpperCase()} Over Time`);
+
+                // Step 5: Fade in new plot smoothly (avoids flash)
+                plotContainer.style("visibility", "visible")
+                    .transition()
+                    .duration(500)
+                    .style("opacity", 1);
+            }, 100); // Small delay to prevent flicker
+        });
+}
+
+
 
 
 // Load data and initialize the page
 loadData();
 
+async function fetchParticipantData(participantId, measurement, session, condition) {
+    const filePath = `./data/survey_gamification/${participantId}/${session}/${condition}/empatica_${measurement}.csv`;
 
+    try {
+        const response = await fetch(filePath);
+        if (!response.ok) {
+            console.error(`Failed to load data for participant ${participantId}`);
+            return null;
+        }
+        const text = await response.text();
+        const rows = text.split("\n").slice(1); // Skip header
+
+        return rows.map(row => {
+            const [value, time] = row.split(","); 
+            return { 
+                time: parseFloat(time),  // Time is in column 2
+                value: parseFloat(value) // Measurement is in column 1
+            };
+        }).filter(d => !isNaN(d.time) && !isNaN(d.value))  //  Remove invalid rows
+          .map((d, i, arr) => ({
+              time: d.time - arr[0].time, //  Normalize time to start from 0
+              value: d.value
+          }));
+
+    } catch (error) {
+        console.error(`Error loading data: ${error}`);
+        return null;
+    }
+}
 
 
 // Function to check if section is in viewport
@@ -298,7 +529,6 @@ function handleScroll() {
                 section.dataset.loaded = "true"; 
                 if (section.id === "empatica") updatePlot("empatica", true);
                 if (section.id === "samsung") updatePlot("samsung", true);
-                if (section.id === "muse") updatePlot("muse_s", true);
             }
         } else {
             section.classList.remove('visible');
@@ -324,3 +554,5 @@ function updateProgressBar() {
 document.addEventListener("scroll", updateProgressBar);
 
 updateProgressBar();
+
+
