@@ -556,3 +556,42 @@ document.addEventListener("scroll", updateProgressBar);
 updateProgressBar();
 
 
+
+document.addEventListener("DOMContentLoaded", function () {
+    const tabs = document.querySelectorAll(".tab-button");
+    const contentContainer = document.getElementById("content-container");
+
+    function activateTab(tabName) {
+        tabs.forEach(t => t.classList.remove("active"));
+
+        // Hide all content boxes at first
+        document.querySelectorAll(".content-box").forEach(box => box.classList.add("hidden"));
+
+        // Remove default message
+        contentContainer.classList.remove("default-message");
+
+        // Clear previous content before appending new one
+        contentContainer.innerHTML = "";  
+
+        // Activate the selected tab
+        const selectedTab = document.querySelector(`[data-tab="${tabName}"]`);
+        selectedTab.classList.add("active");
+
+        // Get the corresponding content
+        const selectedContent = document.getElementById(`${tabName}-content`);
+
+        if (selectedContent) {
+            const clonedContent = selectedContent.cloneNode(true);
+            clonedContent.classList.remove("hidden");
+            contentContainer.appendChild(clonedContent);
+        }
+    }
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", function () {
+            activateTab(this.dataset.tab);
+        });
+    });
+});
+
+
