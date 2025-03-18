@@ -452,8 +452,7 @@ async function showLinePlot(device, measurement, condition, session, participant
                         .domain([yMin, yMax])
                         .range([height, 0]);
                 
-                    // Adjust X-Axis tick format to prevent overlap
-                    const xAxis = d3.axisBottom(xScale).ticks(5);  // Reduce number of ticks
+                    const xAxis = d3.axisBottom(xScale).ticks(10);  
                 
                     svg.append("g")
                         .attr("transform", `translate(0, ${height})`)
@@ -461,8 +460,8 @@ async function showLinePlot(device, measurement, condition, session, participant
                         .call(xAxis)
                         .selectAll("text")
                         .style("text-anchor", "end")
-                        .attr("dx", "-.8em")
-                        .attr("dy", ".15em")
+                        .attr("dx", ".8em")
+                        .attr("dy", ".60em")
                 
                     svg.append("g")
                         .attr("class", "y-axis")
@@ -473,7 +472,7 @@ async function showLinePlot(device, measurement, condition, session, participant
                 
                         svg.append("path")
                             .datum(allData[cond])
-                            .attr("class", `condition-line condition-line-${cond}`)  // Add condition class
+                            .attr("class", `condition-line condition-line-${cond}`) 
                             .attr("fill", "none")
                             .attr("stroke", colorMap[cond])
                             .attr("stroke-width", 2)
@@ -534,6 +533,8 @@ async function showLinePlot(device, measurement, condition, session, participant
                 // Function to update the legend 
                 function updateLegend(showAll) {
                     svg.selectAll(".legend-group").remove();
+                    svg.selectAll(".legend-note").remove(); 
+                
 
                     if (showAll) {
                         const legendGroup = svg.append("g")
@@ -635,7 +636,10 @@ async function fetchParticipantData(participantId, measurement, session, conditi
         const text = await response.text();
         const rows = text.split("\n").slice(1); // Skip header
 
-        return rows.map(row => {
+        const filteredRows = condition === "survey" ? rows.slice(1) : rows;
+
+        return filteredRows
+            .map(row => {
             const [value, time] = row.split(","); 
             return { 
                 time: parseFloat(time),  // Time is in column 2
