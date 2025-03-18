@@ -354,7 +354,7 @@ async function showLinePlot(device, measurement, condition, session, participant
                 plotContainer.append("button")
                     .text("Back")
                     .attr("class", "back-button")
-                    .style("position", "fixed")
+                    .style("position", "absolute")
                     .style("top", "10px")
                     .style("left", "10px")
                     .style("z-index", "1000")
@@ -481,7 +481,6 @@ async function showLinePlot(device, measurement, condition, session, participant
             }, 100); // Small delay to prevent flicker
         });
 }
-
 
 
 
