@@ -57,6 +57,24 @@ all_data = {
 # Define the path pattern
 base_dir = "data/survey_gamification"
 
+# Store gamified status for each participant
+gamified_status = {}
+
+# Read gamified status from questionnaires.csv
+for participant_id in range(11, 25):
+    gamified_status[participant_id] = {"pre": None, "post": None}
+
+    for session in ["pre", "post"]:
+        csv_path = os.path.join(base_dir, str(participant_id), session, "survey", "questionnaires.csv")
+        
+        if os.path.exists(csv_path):
+            with open(csv_path, newline='', encoding='utf-8') as csvfile:
+                reader = csv.DictReader(csvfile)
+                first_row = next(reader, None)  # Read only the first row
+                
+                if first_row and "Gamified" in first_row:
+                    gamified_status[participant_id][session] = first_row["Gamified"].strip().lower() == "yes"
+
 # List of CSV file names to process
 csv_files = ["empatica_bvp.csv", "empatica_eda.csv", "empatica_temp.csv", "samsung_bvp.csv"]
 
@@ -101,11 +119,16 @@ for participant_id in range(11, 25):
                 
                 if avg_value is not None:
                     file_name = csv_file.split(".")[0]  # Get the file name without extension
-                    # Append the participant data with their calculated averages for the specific file/condition
-                    all_data[file_name][session][condition].append({
+                    entry = {
                         "participant_id": participant_id,
                         "avg_value": avg_value
-                    })
+                    }
+
+                    # Only add `gamified_pre` and `gamified_post` for the "survey" condition
+                    if condition == "survey":
+                        entry["gamified"] = gamified_status[participant_id][session]
+
+                    all_data[file_name][session][condition].append(entry)
                 else:
                     print(f"Warning: No valid values found for {csv_file} in {session} {condition} for participant {participant_id}")
 

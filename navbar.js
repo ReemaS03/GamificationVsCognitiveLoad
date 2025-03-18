@@ -1,8 +1,6 @@
 let pages = [
     { url: './index.html', title: 'Stroop Test' },
-    // { url: './plot.html', title: 'Plot' },
-    { url: './plot_design.html', title: 'Plot' },
-    { url: './writeup.html', title: 'Writeup' }
+    { url: './plot_design.html', title: 'Plot' }
 ]; 
 
 let nav = document.createElement('nav');

@@ -5,19 +5,17 @@ let data = [];
 let userSelections = {
     "empatica": { measurement: null, condition: null, session: null },
     "samsung": { measurement: null, condition: null, session: null }
-    // "muse_s": { measurement: null, condition: null, session: null }
 };
 
 // Available measurements for each device
 const deviceMeasurementMap = {
     "empatica": ["bvp", "eda", "temp"],
     "samsung": ["bvp"] // Samsung only measures BVP
-    // "muse_s": ["bvp", "eda"] // Muse can measure BVP and EDA
 };
 
 // Function to load the data
 async function loadData() {
-    data = await fetchJSON('./empatica_samsung_data.json'); // Adjust the path to your JSON data
+    data = await fetchJSON('./empatica_samsung_data.json'); 
     if (!data || data.length === 0) {
         console.error('No data found or failed to load data');
         return;
@@ -27,7 +25,6 @@ async function loadData() {
     // Create dropdowns for each device
     createDropdowns("empatica");
     createDropdowns("samsung");
-    // createDropdowns("muse_s");
 
     setTimeout(() => {
         updatePlot("empatica", true);
@@ -203,7 +200,7 @@ function createScatterplot(device, measurement, condition, session, containerId)
         .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
     // Extract all participant IDs for the X-axis
-    const participantIDs = selectedDeviceData.map(d => d.participant_id);
+    const participantIDs = Array.from({ length: 14 }, (_, i) => i + 11);
 
     // X-axis: Show all participant IDs as labels
     const xScale = d3.scaleBand()
@@ -228,30 +225,40 @@ function createScatterplot(device, measurement, condition, session, containerId)
         .style("padding", "5px")
         .style("border-radius", "5px");
 
-    // Scatter plot points with tooltip
     // Scatter plot points with hover effects and tooltip
     svg.selectAll("circle")
-    .data(selectedDeviceData)
+    .data(selectedDeviceData.filter(d => participantIDs.includes(d.participant_id)))  // Only plot existing data
     .join("circle")
     .attr("cx", d => xScale(d.participant_id) + xScale.bandwidth() / 2)  
     .attr("cy", d => yScale(d.avg_value))
     .attr("r", 6) // Default size
-    .attr("fill", "#007bff")
+    .attr("fill", d => condition === "survey" ? (d.gamified ? "#8A2BE2" : "#FFA500") : "#007bff") 
     .attr("opacity", 0.7)
     .style("transition", "all 0.2s ease-out")
     .on("mouseover", function(event, d) {
+        let hoverColor, tooltipColor;
+
+        if (condition === "survey") {
+            hoverColor = d.gamified ? "#4B0082" : "#ff7000";  // Dark Purple, Dark Orange
+            tooltipColor = d.gamified ? "#9f4fea" : "#FFA500";
+        } else {
+            hoverColor = "#ff6347";  // Red
+            tooltipColor = "rgba(251, 160, 138, 0.95)";  
+        }
+
         d3.select(this)
             .transition()
             .duration(150)
-            .attr("r", 10) // Make dot bigger on hover
-            .attr("fill", "#ff6347") // Change color (Tomato Red)
-            .style("stroke", "#000") // Add black outline
+            .attr("r", 10)
+            .attr("fill", hoverColor)
+            .style("stroke", "#000")
             .style("stroke-width", "2px");
-    
+
         tooltip.style("opacity", 1)
-            .style("background-color", "rgba(255, 99, 71, 0.9)") // Match dot hover color
+            .style("background-color", tooltipColor)
             .html(`<strong>Participant ID:</strong> ${d.participant_id}<br>
-                   <strong>Value:</strong> ${d.avg_value.toFixed(3)}`)
+                   <strong>Value:</strong> ${d.avg_value.toFixed(3)}<br>
+                   ${condition === "survey" ? `<strong>Gamified:</strong> ${d.gamified ? "Yes" : "No"}` : ""}`)
             .style("left", `${event.pageX + 15}px`)
             .style("top", `${event.pageY + 15}px`)
             .style("transform", "translateY(0)"); // Moves tooltip smoothly into place
@@ -265,7 +272,7 @@ function createScatterplot(device, measurement, condition, session, containerId)
             .transition()
             .duration(150)
             .attr("r", 6) // Reset size
-            .attr("fill", "#007bff") // Reset color
+            .attr("fill", d => condition === "survey" ? (d.gamified ? "#8A2BE2" : "#FFA500") : "#007bff")  // Reset color
             .style("stroke", "none"); // Remove outline
     
         tooltip.style("opacity", 0)
@@ -331,19 +338,19 @@ function createScatterplot(device, measurement, condition, session, containerId)
 async function showLinePlot(device, measurement, condition, session, participantId, containerId) {
     const plotContainer = d3.select(`#${containerId}`);
 
-    // Step 1: Fade out scatter plot
+    // Fade out scatter plot
     plotContainer.transition()
         .duration(500)
         .style("opacity", 0)
         .on("end", async function () { 
-            // Step 2: Instead of clearing immediately, hide it first
+            // Instead of clearing immediately, hide it first
             plotContainer.style("visibility", "hidden");
 
-            // Step 3: Wait a tiny bit (prevents empty screen flash)
+            // Wait a tiny bit (prevents empty screen flash)
             setTimeout(async () => {
                 plotContainer.html("");  // Now clear it
 
-                // Step 4: Back Button (always visible)
+                // Back Button (always visible)
                 plotContainer.append("button")
                     .text("Back")
                     .attr("class", "back-button")
@@ -466,7 +473,7 @@ async function showLinePlot(device, measurement, condition, session, participant
                     .attr("font-weight", "bold")
                     .text(`Participant ${participantId} - ${measurement.toUpperCase()} Over Time`);
 
-                // Step 5: Fade in new plot smoothly (avoids flash)
+                // Fade in new plot smoothly (avoids flash)
                 plotContainer.style("visibility", "visible")
                     .transition()
                     .duration(500)

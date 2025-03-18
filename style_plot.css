@@ -246,7 +246,6 @@ h1 {
 
 .tooltip {
     position: absolute;
-    background-color: rgba(251, 160, 138, 0.95) !important; /* Lighter Red (Light Salmon) */
     border: 2px solid black; /* Thicker black outline */
     border-radius: 8px;
     padding: 10px;
