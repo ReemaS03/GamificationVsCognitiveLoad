@@ -17,30 +17,31 @@
     <section id="intro" class="section">
         <h1>Does Simple Gamification Impact the Cognitive Burden of Filling in Surveys?</h1>
         <p class="description">                
-            <strong>The survey gamification dataset</strong> includes physiological signals from 13 volunteers captured by two wearable devices: Empatica E4 and Samsung Galaxy Watch4, across two sessions, in two conditions: 
+            <strong>The survey gamification dataset</strong> includes physiological signals from 13 volunteers captured by two wearable devices: <strong>Empatica E4</strong> and <strong>Samsung Galaxy Watch4</strong>, across two sessions, in three experimental conditions:  
             <ul>
-                <li><strong>Stroop Test:</strong> A cognitive task where participants name the ink color of a word instead of reading the word itself. This requires focus and is mentally demanding. You’ve already experienced this earlier in the project!</li>
-                <li><strong>Baseline Condition:</strong> Participants sat in a relaxed position for three minutes with no distractions or tasks.</li>
+                <li><strong>Stroop Test:</strong> A cognitively demanding task where participants name the ink color of a word instead of the word itself, requiring focus and mental effort. You've already experienced this earlier in the project!</li>
+                <li><strong>Baseline:</strong> A control condition where participants sat in a relaxed position for three minutes with no distractions or tasks.</li>
+                <li><strong>Survey:</strong> Participants completed a work and well-being survey, either in a gamified or non-gamified format.</li>
             </ul>
-            In both sessions, participants completed a cognitive task, took a break, and then filled out four work and well-being surveys (GRIT, PANAS, HAPPINESS, and NFR). The surveys were either gamified or non-gamified, with participants split into two groups:
+        
+            Each participant completed two sessions, spaced two weeks apart, with a structured experiment flow:
+            <ol>
+                <li>Perform a cognitive task (Stroop Test).</li>
+                <li>Rest and do not perform any tasks (Baseline).</li>
+                <li>Complete four work and well-being surveys (GRIT, PANAS, HAPPINESS, and NFR) in either a <strong>gamified</strong> or <strong>non-gamified</strong> format.</li>
+            </ol>
+        
+            Participants were split into two groups:
             <ul>
                 <li><strong>Group 1:</strong> Gamified surveys first, non-gamified in the second session.</li>
-                <li><strong>Group 2:</strong> Non-gamified surveys first, then gamified.</li>
+                <li><strong>Group 2:</strong> Non-gamified surveys first, then gamified in the second session.</li>
             </ul> 
-            
-            Sessions were spaced two weeks apart.<br><br>
-            
-            <strong>This dataset explores whether simple gamification reduces the cognitive burden of survey completion.</strong>
+        
+            <strong>In our visualizations, you will be able to explore how different physiological signals vary under these conditions.</strong>  
+            <br>Scroll down to better understand the data and the options available for exploring it.
         </p>
-        <div class="device-icons">
-            <img src="icons/empatica1.svg" alt="Empatica" class="icon">
-            <img src="icons/samsung2.svg" alt="Samsung" class="icon">
-        </div>
+        
     </section>
-    
-    
-    
-
 
 
     <section id="data-info" class="section">
@@ -53,12 +54,12 @@
             <button class="tab-button" data-tab="devices">Devices</button>
         </div>
     
-        <!-- Content Box (Initially Shows Instruction) -->
+        <!-- Content Box -->
         <div id="content-container" class="default-message">
             <p id="info-text">Click on a tab above to explore the different options for conditions, sessions, and devices.</p>
         </div>
     
-        <!-- Content Sections (Initially Hidden) -->
+        <!-- Content Sections -->
         <div id="conditions-content" class="content-box hidden">
             <div class="info-item">
                 <img src="icons/survey.png" alt="Survey Condition">
@@ -96,12 +97,6 @@
             </div>
         </div>
     </section>
-    
-    
-    
-
-
-
 
     <section id="empatica" class="section">
         <div class="content">
