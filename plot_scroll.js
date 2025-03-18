@@ -340,17 +340,15 @@ async function showLinePlot(device, measurement, condition, session, participant
 
     // Fade out scatter plot
     plotContainer.transition()
-        .duration(500)
+        .duration(300)
         .style("opacity", 0)
         .on("end", async function () { 
-            // Instead of clearing immediately, hide it first
             plotContainer.style("visibility", "hidden");
 
-            // Wait a tiny bit (prevents empty screen flash)
             setTimeout(async () => {
-                plotContainer.html("");  // Now clear it
+                plotContainer.html("");  // Clear old plot
 
-                // Back Button (always visible)
+                // Back Button (Top Left)
                 plotContainer.append("button")
                     .text("Back")
                     .attr("class", "back-button")
@@ -365,34 +363,44 @@ async function showLinePlot(device, measurement, condition, session, participant
                     .style("border-radius", "5px")
                     .style("cursor", "pointer")
                     .on("click", function () {
-                        // Fade out line plot first
                         d3.select(`#${containerId}`)
                             .transition()
                             .duration(500)
                             .style("opacity", 0)
                             .on("end", function () {
-                                // Then clear and show scatter
                                 updatePlot(device);
-                    
-                                // Fade scatter plot back in smoothly
                                 d3.select(`#${containerId}`)
-                                    .style("opacity", 0) // Set it hidden first
+                                    .style("opacity", 0)
                                     .transition()
                                     .duration(500)
-                                    .style("opacity", 1); // Fade it back in
+                                    .style("opacity", 1);
                             });
                     });
+
+                // Toggle Button (Top Right)
+                const toggleButton = plotContainer.append("button")
+                    .text("Show All Conditions")
+                    .attr("class", "toggle-button")
+                    .style("position", "absolute")
+                    .style("top", "10px")
+                    .style("right", "10px")
+                    .style("z-index", "1000")
+                    .style("background", "#007bff")
+                    .style("color", "white")
+                    .style("border", "none")
+                    .style("padding", "8px 15px")
+                    .style("border-radius", "5px")
+                    .style("cursor", "pointer");
+
+                let showAllConditions = false;
+
+                toggleButton.on("click", async function () {
+                    showAllConditions = !showAllConditions;
+                    toggleButton.text(showAllConditions ? "Hide Other Conditions" : "Show All Conditions");
                     
-
-                let participantData = await fetchParticipantData(participantId, measurement, session, condition);
-
-                // Sort by time (ascending order)
-                participantData.sort((a, b) => a.time - b.time);
-                                    
-                if (!participantData) {
-                    plotContainer.append("p").text("No data available for this participant.");
-                    return;
-                }
+                    // Fetch and update plot dynamically
+                    await updateLinePlot(showAllConditions);
+                });
 
                 const margin = { top: 50, right: 30, bottom: 100, left: 80 };
                 const width = 750 - margin.left - margin.right;
@@ -405,82 +413,210 @@ async function showLinePlot(device, measurement, condition, session, participant
                     .append("g")
                     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-                const xScale = d3.scaleLinear()
-                    .domain([0, d3.max(participantData, d => d.time)])
-                    .range([0, width]);
+                const colorMap = {
+                    "baseline": "#007bff",  // Blue
+                    "cognitive_load": "#008000",  // Green
+                    "survey": "#ff6347"  // Red
+                };
 
-                const yScale = d3.scaleLinear()
-                    .domain([d3.min(participantData, d => d.value) - 0.05, d3.max(participantData, d => d.value) + 0.05])
-                    .range([height, 0]);
-
-                const line = d3.line()
-                    .x(d => xScale(d.time))
-                    .y(d => yScale(d.value));
-
-                // Create the path
-                const path = svg.append("path")
-                .datum(participantData)
-                .attr("fill", "none")
-                .attr("stroke", "#ff6347")
-                .attr("stroke-width", 2)
-                .attr("d", line)
-                .attr("stroke-dasharray", function() {
-                    return this.getTotalLength();  
-                })
-                .attr("stroke-dashoffset", function() {
-                    return this.getTotalLength();  
-                })
-                .transition()
-                .duration(10000)  
-                .ease(d3.easeLinear)
-                .attrTween("stroke-dashoffset", function() {
-                    const length = this.getTotalLength();
-                    return function(t) {
-                        return length * (1 - t); // Smoothly draws from left to right
-                    };
-                });
+            
+     
+                async function updateLinePlot(showAll) {
+                    svg.selectAll(".condition-line").remove();
+                    svg.selectAll(".y-axis").remove();
+                    svg.selectAll(".x-axis").remove();
                 
+                    let conditionsToPlot = showAll ? ["baseline", "cognitive_load", "survey"] : [condition];
+                
+                    let allData = {};
+                    for (const cond of conditionsToPlot) {
+                        allData[cond] = await fetchParticipantData(participantId, measurement, session, cond);
+                    }
+                
+                    // Compute global min/max for Y-axis
+                    const allValues = Object.values(allData).flat().map(d => d.value);
+                    const yMin = d3.min(allValues) - 0.05;
+                    const yMax = d3.max(allValues) + 0.05;
+                
+                    // Compute global min/max for X-axis
+                    const allTimes = Object.values(allData).flat().map(d => d.time);
+                    const xMin = d3.min(allTimes);
+                    const xMax = d3.max(allTimes);
+                
+                    // Set up scales
+                    const xScale = d3.scaleLinear()
+                        .domain([xMin, xMax])
+                        .range([0, width]);
+                
+                    const yScale = d3.scaleLinear()
+                        .domain([yMin, yMax])
+                        .range([height, 0]);
+                
+                    // Adjust X-Axis tick format to prevent overlap
+                    const xAxis = d3.axisBottom(xScale).ticks(5);  // Reduce number of ticks
+                
+                    svg.append("g")
+                        .attr("transform", `translate(0, ${height})`)
+                        .attr("class", "x-axis")
+                        .call(xAxis)
+                        .selectAll("text")
+                        .style("text-anchor", "end")
+                        .attr("dx", "-.8em")
+                        .attr("dy", ".15em")
+                
+                    svg.append("g")
+                        .attr("class", "y-axis")
+                        .call(d3.axisLeft(yScale));
+                
+                    conditionsToPlot.forEach(cond => {
+                        if (!allData[cond] || allData[cond].length === 0) return;
+                
+                        svg.append("path")
+                            .datum(allData[cond])
+                            .attr("class", `condition-line condition-line-${cond}`)  // Add condition class
+                            .attr("fill", "none")
+                            .attr("stroke", colorMap[cond])
+                            .attr("stroke-width", 2)
+                            .attr("d", d3.line()
+                                .x(d => xScale(d.time))
+                                .y(d => yScale(d.value)))
+                            .attr("stroke-dasharray", function() { return this.getTotalLength(); })
+                            .attr("stroke-dashoffset", function() { return this.getTotalLength(); })
+                            .transition()
+                            .duration(3000)
+                            .ease(d3.easeLinear)
+                            .attrTween("stroke-dashoffset", function() {
+                                const length = this.getTotalLength();
+                                return function(t) { return length * (1 - t); };
+                            });
+                    });
+                
+                    svg.append("text")
+                        .attr("x", width / 2)
+                        .attr("y", height + 40)
+                        .attr("fill", "black")
+                        .attr("text-anchor", "middle")
+                        .attr("font-size", "14px")
+                        .text("Time (seconds)");
+                
+                    svg.append("text")
+                        .attr("transform", "rotate(-90)")
+                        .attr("x", -height / 2)
+                        .attr("y", -50)
+                        .attr("fill", "black")
+                        .attr("text-anchor", "middle")
+                        .attr("font-size", "14px")
+                        .text(measurement.toUpperCase());
+                
+                    svg.append("text")
+                        .attr("x", width / 2)
+                        .attr("y", -20)
+                        .attr("text-anchor", "middle")
+                        .attr("font-size", "16px")
+                        .attr("font-weight", "bold")
+                        .text(`Participant ${participantId} - ${measurement.toUpperCase()} Over Time`);
+                }
 
-                svg.append("g")
-                    .attr("transform", `translate(0, ${height})`)
-                    .call(d3.axisBottom(xScale));
+                await updateLinePlot(false);
+                // Select or create the legend container
+                let legendContainer = d3.select(plotContainer.node().parentNode).select(".legend-container");
 
-                svg.append("g")
-                    .call(d3.axisLeft(yScale));
+                if (legendContainer.empty()) {
+                    legendContainer = d3.select(plotContainer.node().parentNode)
+                        .append("div")
+                        .attr("class", "legend-container")
+                        .style("display", "none")  
+                        .style("flex-direction", "row")
+                        .style("gap", "15px")
+                        .style("margin-top", "10px");
+                }
 
-                svg.append("text")
-                    .attr("x", width / 2)
-                    .attr("y", height + 40)
-                    .attr("fill", "black")
-                    .attr("text-anchor", "middle")
-                    .attr("font-size", "14px")
-                    .text("Time (seconds)");
+                // Function to update the legend 
+                function updateLegend(showAll) {
+                    svg.selectAll(".legend-group").remove();
 
-                svg.append("text")
-                    .attr("transform", "rotate(-90)")
-                    .attr("x", -height / 2)
-                    .attr("y", -50)
-                    .attr("fill", "black")
-                    .attr("text-anchor", "middle")
-                    .attr("font-size", "14px")
-                    .text(measurement.toUpperCase());
+                    if (showAll) {
+                        const legendGroup = svg.append("g")
+                            .attr("class", "legend-group")
+                            .attr("transform", `translate(${width - 510}, ${height + 55})`);  // Move below X-axis
 
-                svg.append("text")
-                    .attr("x", width / 2)
-                    .attr("y", -20)
-                    .attr("text-anchor", "middle")
-                    .attr("font-size", "16px")
-                    .attr("font-weight", "bold")
-                    .text(`Participant ${participantId} - ${measurement.toUpperCase()} Over Time`);
+                        const legendEntries = Object.keys(colorMap);
+                        
+                        legendEntries.forEach((cond, i) => {
+                            let legendItem = legendGroup.append("g")
+                                .attr("transform", `translate(${i * 150}, 0)`);
+                            
+                            // Add color dot
+                            legendItem.append("circle")
+                                .attr("cx", 0)
+                                .attr("cy", 0)
+                                .attr("r", 6)
+                                .style("fill", colorMap[cond])
+                                .style("cursor", "pointer")
+                                .on("mouseover", function () {
+                                    d3.select(this).transition().duration(200).attr("r", 10); // Enlarge on hover
+                                })
+                                .on("mouseout", function () {
+                                    d3.select(this).transition().duration(200).attr("r", 6); // Return to normal size
+                                })
+                                .on("click", function () {
+                                    // Move the selected line to the front
+                                    svg.selectAll(`.condition-line-${cond}`).raise(); 
+                                });
 
-                // Fade in new plot smoothly (avoids flash)
+                            // Add text label
+                            legendItem.append("text")
+                                .attr("x", 10)
+                                .attr("y", 4)
+                                .style("font-size", "12px")
+                                .style("fill", "black")
+                                .text(cond.replace(/_/g, " ").replace(/\b\w/g, char => char.toUpperCase()));
+                            
+                            svg.append("text")
+                                .attr("class", "legend-note")
+                                .attr("x", width / 2)
+                                .attr("y", height + 80)  // Below the legend
+                                .attr("text-anchor", "middle")
+                                .attr("font-size", "12px")
+                                .attr("fill", "#555")
+                                .style("font-weight", "bold")
+                                .text("Click a circle to bring its line to the front");
+
+                            svg.append("text")
+                                .attr("class", "legend-note")
+                                .attr("x", width / 2)
+                                .attr("y", height + 95)  // Below the first text
+                                .attr("text-anchor", "middle")
+                                .attr("font-size", "12px")
+                                .attr("fill", "#555")
+                                .text("Note: The duration of each condition may vary, causing lines to have different lengths.");
+                       
+                        
+                        });
+                    }
+
+                }
+
+                // Update legend when the toggle button is clicked
+                toggleButton.on("click", async function () {
+                    showAllConditions = !showAllConditions;
+                    toggleButton.text(showAllConditions ? "Hide Other Conditions" : "Show All Conditions");
+
+                    await updateLinePlot(showAllConditions);
+                    updateLegend(showAllConditions);
+                });
+
+                // Initialize legend (hidden by default)
+                updateLegend(false);
                 plotContainer.style("visibility", "visible")
                     .transition()
-                    .duration(500)
+                    .duration(300)
                     .style("opacity", 1);
-            }, 100); // Small delay to prevent flicker
+            }, 100);
         });
 }
+
+
 
 
 
@@ -562,8 +698,8 @@ document.addEventListener("scroll", updateProgressBar);
 updateProgressBar();
 
 
-
 document.addEventListener("DOMContentLoaded", function () {
+    // --- TABS FUNCTIONALITY ---
     const tabs = document.querySelectorAll(".tab-button");
     const contentContainer = document.getElementById("content-container");
 
@@ -598,6 +734,5 @@ document.addEventListener("DOMContentLoaded", function () {
             activateTab(this.dataset.tab);
         });
     });
+
 });
-
-
